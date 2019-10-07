@@ -1,0 +1,16 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: sms-service
+  redis:
+    host: 192.168.3.102
+    port: 6379
+    database: 0
+
+  rabbitmq:
+    host: 192.168.3.102
+    virtual-host: /cloud
+    username: cloud
+    password: cloud

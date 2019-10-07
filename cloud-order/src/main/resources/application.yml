@@ -1,0 +1,39 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: order-service
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/cloud
+    username:
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+
+  jackson:
+    default-property-inclusion: non_null
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+mybatis:
+  type-aliases-package: com.cloud.order.pojo
+
+cloud:
+  worker:
+    workerId: 1
+    dataCenterId: 1
+
+  pay:
+    appID: wx123        #公众号ID
+    mchId: 123123       #商户号
+    key: fiosdfois      #生成签名的秘钥
+    httpConnectTimeoutMs: 1000  #1000
+    httpReadTimeoutMs: 5000     #5000
+    notifyUrl: http://www.cloud.com  #下单通知回调

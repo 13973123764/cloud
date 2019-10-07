@@ -1,0 +1,47 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: item-service
+
+  rabbitmq:
+    host: 192.168.3.102
+    username: cloud
+    password: cloud
+    virtual-host: /cloud
+    publisher-confirms: true
+    template:
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 30000ms
+        multiplier: 2
+      exchange: cloud.item.exchange
+
+  datasource:
+    url: jdbc:mysql://192.168.3.102:3306/cloud?characterEncoding=utf8
+    username: root
+    password: 123456
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: file:/Users/mac/Downloads/upload
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 15
+
+mybatis:
+  type-aliases-package: com.cloud.item.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
