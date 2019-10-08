@@ -135,4 +135,12 @@ public class BrandService {
         }
         return brandList;
     }
+
+    public List<Brand> queryBrandByIds(List<Long> ids) {
+        List<Brand> brands = brandMapper.selectByIdList(ids);
+        if(CollectionUtils.isEmpty(brands)){
+            throw new CloudException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brands;
+    }
 }

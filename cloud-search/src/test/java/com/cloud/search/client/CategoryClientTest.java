@@ -1,5 +1,6 @@
 package com.cloud.search.client;
 
+import com.cloud.item.pojo.Brand;
 import com.cloud.item.pojo.Category;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,13 +24,13 @@ public class CategoryClientTest {
 
     @Autowired
     CategoryClient categoryClient;
+    @Autowired
+    BrandClient brandClient;
 
     @Test
     public void queryCategoryByIds() {
 
-        List<Category> categories = categoryClient.queryCategoryByIds(Arrays.asList(1L, 2L, 3L));
-        for (Category category : categories) {
-            System.out.println("category = " + category);
-        }
+        List<Brand> brands = brandClient.queryBrandByIds(Arrays.asList(2505L, 3177L));
+        System.out.println("brands = " + brands);
     }
 }

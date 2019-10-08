@@ -14,6 +14,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,7 @@ public class GoodsRepositoryTest {
 
     @Test
     public void test1(){
+        //template.deleteIndex(Goods.class);
         template.createIndex(Goods.class);
         template.putMapping(Goods.class);
     }
@@ -47,11 +49,13 @@ public class GoodsRepositoryTest {
     public void test2(){
         Iterable<Goods> all = goodsRepository.findAll();
 
-        int i=0;
-        while(all.iterator().hasNext()){
+        int i = 0;
+        Iterator<Goods> it = all.iterator();
+        while(it.hasNext()){
             i++;
         }
         System.out.println("i = " + i);
+
     }
 
     @Test
@@ -68,8 +72,7 @@ public class GoodsRepositoryTest {
                 break;
             }
             List<Goods> goodsList = spuList.stream().map(searchService::buildGoods).collect(Collectors.toList());
-            System.out.println("goodsList = " + goodsList.size());
-
+            goodsRepository.saveAll(goodsList);
             page ++;
             size = spuList.size();
 

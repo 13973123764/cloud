@@ -2,6 +2,7 @@ package com.cloud.item.mapper;
 
 import com.cloud.item.pojo.Brand;
 import com.cloud.item.pojo.Category;
+import com.cloud.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author zf
  * @date 2019-09-28-18:02
  */
-public interface BrandMapper extends Mapper<Brand> {
+public interface BrandMapper extends BaseMapper<Brand> {
 
     static final String  SQL = "b.id, b.name , b.parent_id as parentId, b.is_parent as isParent";
 
